@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for epi in epi %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ epi.name }}</a>
+              <small class="text-muted">{{ epi.year }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ epi.name }}</a></h2>
+            <p class="article-content">{{ epi.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
