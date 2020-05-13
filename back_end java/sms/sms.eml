@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/sms"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="core-3.4.2.3.jar" scope="COMPILE">
+		<srcroot url="jar://$USER_HOME$/Downloads/core-3.4.2.3.jar!/"/>
+	</lib>
+	<lib name="core-3.4.2.3.jar" scope="COMPILE">
+		<srcroot url="jar://$MODULE_DIR$/core-3.4.2.3.jar!/"/>
+		<relative-module-src project-related="jar://$PROJECT_DIR$/core-3.4.2.3.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/core-3.4.2.3.jar!/"/>
+	</lib>
+	<lib name="mysql-connector-java-8.0.20.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/mysql-connector-java-8.0.20.jar!/"/>
+	</lib>
+</component>
