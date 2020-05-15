@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sms1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sms/out/artifacts/sms_jar/sms.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
