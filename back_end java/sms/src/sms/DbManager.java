@@ -1,20 +1,16 @@
 package sms;
 
-import com.africastalking.AfricasTalking;
-import com.africastalking.SmsService;
-import com.africastalking.sms.Recipient;
 import sms.dto.NewSmsDto;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DbManager {
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
+    private Connection getConnection() throws SQLException {
         EnvSettings settings = EnvSettings.getInstance();
-        Class.forName("com.mysql.jdbc.Driver");
         System.out.println("connecting....");
-        return DriverManager.getConnection(settings.getDbName(), settings.getDbUsername(), settings.getDbPassword());
+        String jdbcUrl = "jdbc:mysql://localhost:"+settings.getDbPort()+"/"+settings.getDbName();
+        return DriverManager.getConnection(jdbcUrl, settings.getDbUsername(), settings.getDbPassword());
     }
 
     public List<NewSmsDto> getNewSmses(){
@@ -25,8 +21,19 @@ public class DbManager {
             pstmt.setString(1, "pending");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                newSmsDtoList.add(new NewSmsDto(rs.getString("text"),rs.getString("phone")));
+                newSmsDtoList.add(new NewSmsDto(rs.getString("phone"),rs.getString("text")));
             }
+        } catch (Exception se) {
+            se.printStackTrace();
+        }
+        //updating the date after the message was send
+        try(Connection connection = getConnection()){
+            String sql = "update message SET Status ='success' WHERE Status ='pending'";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            System.out.println("updating....");
+
+            pstmt.executeUpdate();
+
         } catch (Exception se) {
             se.printStackTrace();
         }
@@ -34,7 +41,5 @@ public class DbManager {
         return newSmsDtoList;
     }
 
-    public void executeQuery(String s) {
-    }
-}
 
+}

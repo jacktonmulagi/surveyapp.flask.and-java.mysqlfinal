@@ -45,7 +45,7 @@ public class EnvSettings {
                 throw new Exception("DB name is required");
             }
             if (_dbPassword != null && !_dbPassword.isEmpty()) {
-                setDbPassword(_apiKey);
+                setDbPassword(_dbPassword);
             } else {
                 throw new Exception("DB password is required");
             }
