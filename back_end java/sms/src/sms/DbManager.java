@@ -12,9 +12,10 @@ import java.util.List;
 public class DbManager {
     private Connection getConnection() throws ClassNotFoundException, SQLException {
         EnvSettings settings = EnvSettings.getInstance();
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("connecting....");
-        return DriverManager.getConnection(settings.getDbName(), settings.getDbUsername(), settings.getDbPassword());
+        String jdbcUrl = "jdbc:mysql://localhost:"+settings.getDbPort()+"/"+settings.getDbName()+"?user="+settings.getDbUsername()+"&password="+settings.getDbPassword();
+        return DriverManager.getConnection(jdbcUrl);
     }
 
     public List<NewSmsDto> getNewSmses(){
